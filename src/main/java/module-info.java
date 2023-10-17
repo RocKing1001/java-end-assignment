@@ -5,4 +5,5 @@ module me.piguy.assignment {
 
     opens me.piguy.assignment to javafx.fxml;
     exports me.piguy.assignment;
+    exports me.piguy.assignment.models;
 }
