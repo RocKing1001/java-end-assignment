@@ -8,4 +8,5 @@ module me.piguy.assignment {
     exports me.piguy.assignment.models;
     exports me.piguy.assignment.database;
     exports me.piguy.assignment.encryption;
+    exports me.piguy.assignment.pane;
 }

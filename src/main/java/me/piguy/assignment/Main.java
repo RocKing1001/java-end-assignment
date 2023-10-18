@@ -21,6 +21,7 @@ public class Main extends Application {
         userdb.setValue("joey_nonsensejp", new User("Joey Bizinger", Role.Sales, "nonsense"));
         userdb.setValue("cdawgva", new User("Connor Colquhoun", Role.Sales, "jumpking"));
         userdb.setValue("notgrant", new User("Garnt \"Grant\" Maneetapho", Role.IT, "isekai"));
+        userdb.setValue("1", new User("Garnt \"Grant\" Maneetapho", Role.IT, "1"));
 
         // Load the login window
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-screen.fxml"));

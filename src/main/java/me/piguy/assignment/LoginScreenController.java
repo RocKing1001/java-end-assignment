@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 import me.piguy.assignment.database.KVDatabase;
 import me.piguy.assignment.models.User;
 
-import java.io.IOException;
-
 public class LoginScreenController {
     KVDatabase<String, User> db;
 
@@ -50,8 +48,8 @@ public class LoginScreenController {
 
 
         // Load the dashboard
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("dashboard-screen.fxml"));
-        fxmlLoader.setController(new DashboardScreenController(user));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-screen.fxml"));
+        fxmlLoader.setController(new MainScreenController(user));
 
         try {
             // I put this before stage.close()
@@ -72,7 +70,6 @@ public class LoginScreenController {
             showError("An internal error has occured, try relaunching the app");
             System.err.printf("Error when loading the window: %s%n", e.getMessage());
         }
-
     }
 
     public void initialize() {
