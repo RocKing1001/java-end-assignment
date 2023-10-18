@@ -12,12 +12,12 @@ public class MemoryUserDB implements KVDatabase<String, User> {
 
     HashMap<String, User> users;
 
-    public MemoryUserDB() {
-        users = new HashMap<>();
-    }
-
     public MemoryUserDB(HashMap<String, User> defaultUsers) {
         users = defaultUsers;
+    }
+
+    public MemoryUserDB() {
+        users = new HashMap<>();
     }
 
     @Override
@@ -27,6 +27,6 @@ public class MemoryUserDB implements KVDatabase<String, User> {
 
     @Override
     public void setValue(String name, User user) {
-        throw new RuntimeException("The database is read only");
+        users.put(name, user);
     }
 }

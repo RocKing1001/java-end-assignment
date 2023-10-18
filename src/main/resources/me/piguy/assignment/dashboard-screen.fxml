@@ -8,7 +8,10 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="me.piguy.assignment.DashboardScreenController"
             prefHeight="400.0" prefWidth="600.0">
+    <VBox>
+        <Label text="Hello" fx:id="name" />
+        <Label text="Hello" fx:id="role" />
+    </VBox>
 
 </AnchorPane>

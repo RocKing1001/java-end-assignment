@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.assignment.LoginScreenController">
+            xmlns:fx="http://javafx.com/fxml/1">
     <GridPane alignment="CENTER_LEFT" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0"
               AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -38,7 +38,7 @@
         <!-- Login button-->
         <Button defaultButton="true" onAction="#login" prefHeight="40" style="-fx-background-color: #a73121;"
                 text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3"
-                fx:id="loginButton" />
+                fx:id="loginButton"/>
 
     </GridPane>
 

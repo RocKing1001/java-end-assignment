@@ -1,9 +1,10 @@
 package me.piguy.assignment.models;
 
 public enum Role {
+    IT("IT Technician"),
     Sales;
 
-    final String displayName;
+    public final String displayName;
     Role(String displayName) {
         this.displayName = displayName;
     }
