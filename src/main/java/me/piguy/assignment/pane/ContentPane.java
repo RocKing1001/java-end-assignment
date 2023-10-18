@@ -1,9 +1,9 @@
 package me.piguy.assignment.pane;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import me.piguy.assignment.models.User;
 
 import java.io.IOException;
 
@@ -14,24 +14,31 @@ public enum ContentPane {
     OrderHistory("order-history.fxml", "Order history");
 
     public final String displayName;
+    public final String fxmlFile;
     Pane pane;
 
-    private void loadPane(String fxmlFile) throws IOException {
-        FXMLLoader loader = new FXMLLoader(ContentPane.class.getResource(fxmlFile));
-        this.pane = loader.load();
-        System.out.println("HELLO");
+
+    public FXMLLoader getLoader() {
+        return new FXMLLoader(ContentPane.class.getResource(fxmlFile));
     }
 
-    ContentPane(String fxmlFile, String displayName) {
-        this.displayName = displayName;
+    @Deprecated
+    public Scene getScene() {
+        FXMLLoader loader = getLoader();
         try {
-            loadPane(fxmlFile);
+            return new Scene(loader.load());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Pane getPane() {
-        return pane;
+    public MainWindowPane getController() {
+        FXMLLoader loader = getLoader();
+        return loader.getController();
+    }
+
+    ContentPane(String fxmlFile, String displayName) {
+        this.displayName = displayName;
+        this.fxmlFile = fxmlFile;
     }
 }

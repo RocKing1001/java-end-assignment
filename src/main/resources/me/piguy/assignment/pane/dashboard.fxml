@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="dashboardUsernameDisplay">Dashboard</Label>
-</Pane>
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox fx:id="navMenu" spacing="8.0" style="-fx-background-color: #952323;">
+            <Button onAction="#navDashboard" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Dashboard" textFill="WHITE" />
+            <Button onAction="#navCreateOrder" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Create order" textFill="WHITE" />
+            <Button onAction="#navProductInventory" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Product inventory" textFill="WHITE" />
+            <Button onAction="#navOrderHistory" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Order history" textFill="WHITE" />
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="40.0" />
+            </padding>
+        </VBox>
+        <VBox spacing="4.0">
+            <Label fx:id="username" text="AAA">
+                <font>
+                    <Font size="22.0" />
+                </font>
+                <VBox.margin>
+                    <Insets />
+                </VBox.margin>
+            </Label>
+            <Label fx:id="role" text="pooper" />
+            <Label fx:id="time" text="pooper" />
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+         </padding>
+        </VBox>
+    </HBox>
+</AnchorPane>

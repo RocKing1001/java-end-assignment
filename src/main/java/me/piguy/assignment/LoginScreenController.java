@@ -10,6 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import me.piguy.assignment.database.KVDatabase;
 import me.piguy.assignment.models.User;
+import me.piguy.assignment.pane.ContentPane;
+import me.piguy.assignment.pane.DashboardPaneController;
+
+import java.io.IOException;
 
 public class LoginScreenController {
     KVDatabase<String, User> db;
@@ -46,24 +50,20 @@ public class LoginScreenController {
             return;
         }
 
+        // Load the xml file
+        FXMLLoader loader = ContentPane.Dashboard.getLoader();
+        loader.setController(new DashboardPaneController(user));
 
-        // Load the dashboard
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-screen.fxml"));
-        fxmlLoader.setController(new MainScreenController(user));
 
         try {
-            // I put this before stage.close()
-            // because I dont want login window to close
-            // if this does not load
-            Scene scene = new Scene(fxmlLoader.load());
-
             // Close the window
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
 
             stage.setTitle("Open music dungeon");
             stage.setResizable(true);
-            stage.setScene(scene);
+            stage.setScene(new Scene(loader.load()));
+
             stage.show();
 
         } catch (Exception e) {
