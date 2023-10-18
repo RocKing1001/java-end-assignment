@@ -17,6 +17,7 @@
             <RowConstraints vgrow="NEVER"/>
             <RowConstraints vgrow="NEVER"/>
             <RowConstraints vgrow="NEVER"/>
+            <RowConstraints vgrow="NEVER"/>
         </rowConstraints>
 
 
@@ -35,9 +36,13 @@
         <Label text="Password" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
         <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
+
+        <!-- Error -->
+        <Label GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" fx:id="errorText" textFill="#a73121"/>
+
         <!-- Login button-->
         <Button defaultButton="true" onAction="#login" prefHeight="40" style="-fx-background-color: #a73121;"
-                text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4"
                 fx:id="loginButton"/>
 
     </GridPane>

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import me.piguy.assignment.database.KVDatabase;
@@ -21,10 +22,10 @@ public class LoginScreenController {
     TextField password;
 
     @FXML
-    Button loginButton = new Button();
+    Label errorText;
 
-    public LoginScreenController() {
-    }
+    @FXML
+    Button loginButton = new Button();
 
     public LoginScreenController(KVDatabase<String, User> db) {
         this.db = db;
@@ -34,42 +35,41 @@ public class LoginScreenController {
         return username.getText().isEmpty() || password.getText().isEmpty();
     }
 
+    private void showError(String error) {
+        errorText.setText(error);
+    }
+
     public void login() {
         // get user
         User user = db.getValue(username.getText());
 
-        if (user == null) {
-            username.setText("");
+        if (user == null || !user.checkPassword(password.getText())) {
+            showError("Invalid username/password combination");
             return;
         }
 
-        // reset the password field if password is incorrect
-        if (!user.checkPassword(password.getText())) {
-            password.setText("");
-            return;
-        }
-
-        // Close the window
-        Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.close();
 
         // Load the dashboard
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("dashboard-screen.fxml"));
         fxmlLoader.setController(new DashboardScreenController(user));
 
         try {
+            // I put this before stage.close()
+            // because I dont want login window to close
+            // if this does not load
             Scene scene = new Scene(fxmlLoader.load());
+
+            // Close the window
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.close();
+
             stage.setTitle("Open music dungeon");
             stage.setResizable(true);
             stage.setScene(scene);
             stage.show();
 
-        } catch (IOException e) {
-            // I don't really do anything
-            // Like, what should I do? ask the user to relaunch
-            // They will do that anyway so not my problem
-            // I will log to the console though, so terminal users
-            // will know what's wrong
+        } catch (Exception e) {
+            showError("An internal error has occured, try relaunching the app");
             System.err.printf("Error when loading the window: %s%n", e.getMessage());
         }
 

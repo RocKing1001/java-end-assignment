@@ -2,7 +2,6 @@ package me.piguy.assignment.models;
 
 import me.piguy.assignment.ConfigurationManager;
 import me.piguy.assignment.encryption.Encryption;
-import me.piguy.assignment.encryption.NoEncryption;
 
 import java.util.Objects;
 

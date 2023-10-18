@@ -5,12 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import me.piguy.assignment.database.KVDatabase;
-import me.piguy.assignment.database.MemoryUserDB;
 import me.piguy.assignment.models.Role;
 import me.piguy.assignment.models.User;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class Main extends Application {
     @Override
