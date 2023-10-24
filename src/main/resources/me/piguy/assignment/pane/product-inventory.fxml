@@ -1,15 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.assignment.pane.CreateOrderPaneController">
     <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <VBox fx:id="navMenu" spacing="8.0" style="-fx-background-color: #952323;">
-            <Button onAction="#navDashboard" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Dashboard" textFill="WHITE" />
-            <Button onAction="#navCreateOrder" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Create order" textFill="WHITE" />
-            <Button onAction="#navProductInventory" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Product inventory" textFill="WHITE" />
-            <Button onAction="#navOrderHistory" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Order history" textFill="WHITE" />
+            <Button onAction="#navDashboard" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Dashboard" textFill="WHITE">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+            <Button onAction="#navCreateOrder" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Create order" textFill="WHITE">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+            <Button onAction="#navProductInventory" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Product inventory" textFill="WHITE">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+            <Button onAction="#navOrderHistory" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Order history" textFill="WHITE">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="40.0" />
             </padding>

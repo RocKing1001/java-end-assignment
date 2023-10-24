@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import me.piguy.assignment.ConfigurationManager;
 import me.piguy.assignment.models.User;
 
 import java.io.IOException;
@@ -17,32 +18,37 @@ public abstract class MainWindowPane {
     VBox navMenu;
 
     User user;
+    ConfigurationManager config;
 
-    public MainWindowPane(User user) {
+    public void init(User user, ConfigurationManager config) {
         this.user = user;
+        this.config = config;
     }
 
     public void navDashboard() {
-        navigatePane(ContentPane.Dashboard, new DashboardPaneController(user));
+        navigatePane(ContentPane.Dashboard);
     }
+
     public void navCreateOrder() {
-        navigatePane(ContentPane.CreateOrder, new DashboardPaneController(user));
+        navigatePane(ContentPane.CreateOrder);
     }
 
     public void navProductInventory() {
-        navigatePane(ContentPane.ProductInventory, new DashboardPaneController(user));
+        navigatePane(ContentPane.ProductInventory);
     }
 
     public void navOrderHistory() {
-        navigatePane(ContentPane.OrderHistory, new DashboardPaneController(user));
+        navigatePane(ContentPane.OrderHistory);
     }
 
-    void navigatePane(ContentPane pane, MainWindowPane controller) {
-        Stage stage = (Stage)navMenu.getScene().getWindow();
+    void navigatePane(ContentPane pane) {
+        Stage stage = (Stage) navMenu.getScene().getWindow();
         FXMLLoader loader = pane.getLoader();
-        loader.setController(controller);
+
         try {
             stage.setScene(new Scene(loader.load()));
+            MainWindowPane controller = loader.getController();
+            controller.init(user, config);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

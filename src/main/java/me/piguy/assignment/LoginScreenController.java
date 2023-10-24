@@ -1,5 +1,6 @@
 package me.piguy.assignment;
 
+import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +13,7 @@ import me.piguy.assignment.database.KVDatabase;
 import me.piguy.assignment.models.User;
 import me.piguy.assignment.pane.ContentPane;
 import me.piguy.assignment.pane.DashboardPaneController;
-
-import java.io.IOException;
+import me.piguy.assignment.pane.MainWindowPane;
 
 public class LoginScreenController {
     KVDatabase<String, User> db;
@@ -29,11 +29,15 @@ public class LoginScreenController {
     @FXML
     Button loginButton = new Button();
 
-    public LoginScreenController(KVDatabase<String, User> db) {
-        this.db = db;
+    ConfigurationManager config;
+
+    public LoginScreenController(ConfigurationManager config) {
+        this.config = config;
+        this.db = config.userDB;
     }
 
     boolean areInputsEmpty() {
+        // master and slave
         return username.getText().isEmpty() || password.getText().isEmpty();
     }
 
@@ -52,23 +56,30 @@ public class LoginScreenController {
 
         // Load the xml file
         FXMLLoader loader = ContentPane.Dashboard.getLoader();
-        loader.setController(new DashboardPaneController(user));
+
 
 
         try {
-            // Close the window
             Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.close();
 
             stage.setTitle("Open music dungeon");
             stage.setResizable(true);
             stage.setScene(new Scene(loader.load()));
+
+            MainWindowPane controller = loader.getController();
+            controller.init(user, config);
+
+            // Close the window after scene is loaded
+            // So if an error occurs, the login window stays open
+            stage.close();
 
             stage.show();
 
         } catch (Exception e) {
             showError("An internal error has occured, try relaunching the app");
             System.err.printf("Error when loading the window: %s%n", e.getMessage());
+
+            e.printStackTrace();
         }
     }
 
