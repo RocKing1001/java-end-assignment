@@ -15,7 +15,6 @@ public enum ContentPane {
 
     public final String displayName;
     public final String fxmlFile;
-    Pane pane;
 
 
     public FXMLLoader getLoader() {

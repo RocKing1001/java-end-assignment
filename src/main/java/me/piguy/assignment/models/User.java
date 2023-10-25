@@ -33,6 +33,8 @@ public class User {
 
         this.username = name;
         this.role = role;
+        // I really wished I could use static classes for my config manager
+        // feels so wrong to have to init a class just to get a type from it
         this.encryption = config.encryption;
         this.password = encryption.encrypt(password);
     }

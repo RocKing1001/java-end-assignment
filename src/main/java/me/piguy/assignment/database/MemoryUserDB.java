@@ -3,6 +3,7 @@ package me.piguy.assignment.database;
 import me.piguy.assignment.models.User;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * An in memory key-value database which makes use of a hashmap
@@ -28,5 +29,10 @@ public class MemoryUserDB implements KVDatabase<String, User> {
     @Override
     public void setValue(String name, User user) {
         users.put(name, user);
+    }
+
+    @Override
+    public List<User> getAllValues() {
+        return (List<User>) users.values();
     }
 }

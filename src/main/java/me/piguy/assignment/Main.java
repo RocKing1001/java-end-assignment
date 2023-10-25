@@ -18,13 +18,9 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         // load my config
         ConfigurationManager config = new ConfigurationManager();
-        KVDatabase<String, User> userdb = config.userDB;
 
         // Initialise DB
-        userdb.setValue("joey_nonsensejp", new User("Joey Bizinger", Role.Sales, "nonsense"));
-        userdb.setValue("cdawgva", new User("Connor Colquhoun", Role.Sales, "jumpking"));
-        userdb.setValue("notgrant", new User("Garnt \"Grant\" Maneetapho", Role.IT, "isekai"));
-        userdb.setValue("1", new User("Garnt \"Grant\" Maneetapho", Role.IT, "1"));
+        config.database.initTestData();
 
         // Set the scheduler field
         // This is so I can gracefully shut it down

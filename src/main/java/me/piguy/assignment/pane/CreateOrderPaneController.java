@@ -1,31 +1,43 @@
 package me.piguy.assignment.pane;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import me.piguy.assignment.models.Order;
+import me.piguy.assignment.ConfigurationManager;
+import me.piguy.assignment.database.DBCollections;
+import me.piguy.assignment.database.KVDatabase;
+import me.piguy.assignment.models.Item;
+import me.piguy.assignment.models.User;
+import me.piguy.assignment.popup.AddProductWindow;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreateOrderPaneController extends MainWindowPane {
     @FXML
-    public TableView<Order> tableOfOrders;
+    public TableView<Item> tableOfOrders;
 
-    public List<Order> ordersList = new ArrayList<>();
-    public ObservableList<Order> orders;
+    public ObservableList<Item> orders;
 
-    private void initialiseOrders() {
-        ordersList.add(new Order(1, "Squire Stratocaster", "Guitar", 299.99));
+    @Override
+    public void init(User user, ConfigurationManager config) {
+        super.init(user, config);
+
+        KVDatabase<String, Item> ordersList =
+                (KVDatabase<String, Item>) config.database.getCollection(DBCollections.Products);
+
+        this.orders = FXCollections.observableArrayList(new ArrayList<>());
+        tableOfOrders.setItems(orders);
     }
 
-    public void initialize() {
-        initialiseOrders();
-        this.orders = FXCollections.observableArrayList(ordersList);
-        tableOfOrders.setItems(orders);
+    public void addItem() {
+        AddProductWindow addItemWindow = new AddProductWindow(orders, config.database);
+        addItemWindow.showPopup();
+    }
+
+    public void deleteSelected(ActionEvent actionEvent) {
+        ObservableList<Item> selectedItem = tableOfOrders.getSelectionModel().getSelectedItems();
+        orders.removeAll(selectedItem);
     }
 }

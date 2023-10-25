@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import me.piguy.assignment.database.DBCollections;
 import me.piguy.assignment.database.KVDatabase;
 import me.piguy.assignment.models.User;
 import me.piguy.assignment.pane.ContentPane;
@@ -33,7 +34,7 @@ public class LoginScreenController {
 
     public LoginScreenController(ConfigurationManager config) {
         this.config = config;
-        this.db = config.userDB;
+        this.db = (KVDatabase<String, User>) config.database.getCollection(DBCollections.Users);
     }
 
     boolean areInputsEmpty() {

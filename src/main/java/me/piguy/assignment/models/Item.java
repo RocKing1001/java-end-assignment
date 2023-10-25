@@ -1,6 +1,6 @@
 package me.piguy.assignment.models;
 
-public class Order {
+public class Item implements Cloneable {
     private int quantity;
     private String name;
     private String category;
@@ -38,10 +38,19 @@ public class Order {
         this.price = price;
     }
 
-    public Order(int quantity, String name, String category, double price) {
+    public Item(int quantity, String name, String category, double price) {
         this.quantity = quantity;
         this.name = name;
         this.category = category;
         this.price = price;
+    }
+
+    @Override
+    public Item clone() {
+        try {
+            return (Item) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
