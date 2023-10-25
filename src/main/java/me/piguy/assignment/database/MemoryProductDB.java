@@ -4,16 +4,17 @@ import me.piguy.assignment.models.Item;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * An in memory key-value database which makes use of a hashmap
  * Current purpose of this database is to store users
  */
-public class MemoryProductDB implements KVDatabase<String, Item> {
+public class MemoryProductDB implements KVDatabase<UUID, Item> {
 
-    private HashMap<String, Item> items;
+    private final HashMap<UUID, Item> items;
 
-    public MemoryProductDB(HashMap<String, Item> defaultUsers) {
+    public MemoryProductDB(HashMap<UUID, Item> defaultUsers) {
         items = defaultUsers;
     }
 
@@ -22,17 +23,17 @@ public class MemoryProductDB implements KVDatabase<String, Item> {
     }
 
     @Override
-    public Item getValue(String name) {
+    public Item getValue(UUID name) {
         return items.get(name);
     }
 
     @Override
-    public void setValue(String name, Item item) {
-        items.put(name, item);
+    public void setValue(UUID id, Item item) {
+        items.put(id, item);
     }
 
     @Override
-    public void dropValue(String key) {
+    public void dropValue(UUID key) {
         items.remove(key);
     }
 

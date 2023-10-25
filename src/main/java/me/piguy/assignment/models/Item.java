@@ -1,13 +1,24 @@
 package me.piguy.assignment.models;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Item implements Serializable {
     private int quantity;
     private String name;
     private String category;
     private double price;
-    public final int id;
+    private String description;
+
+    public final UUID id;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -41,16 +52,26 @@ public class Item implements Serializable {
         this.price = price;
     }
 
-    public Item(int quantity, String name, String category, double price, int id) {
+    public Item(int quantity, String name, String category, double price) {
         this.quantity = quantity;
         this.name = name;
         this.category = category;
         this.price = price;
-        this.id = id;
+        this.description = "";
+        this.id = UUID.randomUUID();
     }
 
-    public Item withMoreQuantity(int quantity) {
-        return new Item(this.quantity + quantity, this.name, this.category, this.price, this.id);
+    public Item(int quantity, String name, String category, double price, String description) {
+        this.quantity = quantity;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.description = description;
+        this.id = UUID.randomUUID();
+    }
+
+    public void addQuantity(int quantity) {
+        this.setQuantity(this.quantity + quantity);
     }
 
 }

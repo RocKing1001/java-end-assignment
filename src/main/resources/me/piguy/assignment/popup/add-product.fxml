@@ -38,6 +38,11 @@
                                 <PropertyValueFactory property="price"/>
                             </cellValueFactory>
                         </TableColumn>
+                        <TableColumn text="Description">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="description"/>
+                            </cellValueFactory>
+                        </TableColumn>
                     </columns>
                 </TableView>
                 <HBox spacing="10.0">

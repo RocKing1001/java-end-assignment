@@ -67,7 +67,7 @@
                     </TableColumn>
                     <TableColumn fx:id="descCol" text="Description">
                         <cellValueFactory>
-                            <PropertyValueFactory property="price" />
+                            <PropertyValueFactory property="description" />
                         </cellValueFactory>
                     </TableColumn>
                 </columns>

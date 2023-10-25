@@ -4,6 +4,8 @@ import me.piguy.assignment.models.Item;
 import me.piguy.assignment.models.Role;
 import me.piguy.assignment.models.User;
 
+import java.util.UUID;
+
 /**
  * CollectionDatabase but with test data which gets set upon initialisation
  */
@@ -24,9 +26,10 @@ public class TestCollectionDatabase extends CollectionDatabase {
         users.setValue("1", new User("Garnt \"Grant\" Maneetapho", Role.IT, "1"));
 
         // products
-        KVDatabase<String, Item> products = (KVDatabase<String, Item>) getCollection(DBCollections.Products);
-        products.setValue("Fender Stratocaster", new Item(10, "Fender Stratocaster", "Guitar", 2199.99, 1));
-        products.setValue("Squire Stratocaster", new Item(13, "Squire Stratocaster", "Guitar", 289.98, 2));
-
+        KVDatabase<UUID, Item> products = getProducts();
+        Item itemToAdd = new Item(10, "Fender Stratocaster", "Guitar", 2199.99, "a good guitar");
+        products.setValue(itemToAdd.id, itemToAdd);
+        itemToAdd = new Item(13, "Squire Stratocaster", "Guitar", 289.98, "fender but less yellow and cheaper");
+        products.setValue(itemToAdd.id, itemToAdd);
     }
 }

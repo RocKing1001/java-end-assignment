@@ -66,8 +66,12 @@ public class CreateOrderPaneController extends MainWindowPane {
     public void deleteSelected(ActionEvent actionEvent) {
         Item selectedItem = tableOfOrders.getSelectionModel().getSelectedItem();
         KVDatabase<String, Item> products = (KVDatabase<String, Item>) clonedDb.getCollection(DBCollections.Products);
-        products.setValue(selectedItem.getName(),
-                products.getValue(selectedItem.getName()).withMoreQuantity(selectedItem.getQuantity()));
+
+
+        Item newValue = products.getValue(selectedItem.getName());
+        newValue.addQuantity(selectedItem.getQuantity());
+
+        products.setValue(selectedItem.getName(), newValue);
 
         orders.remove(selectedItem);
     }

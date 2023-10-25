@@ -4,6 +4,7 @@ import me.piguy.assignment.models.Item;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * A collection database which holds references to multiple KV databases
@@ -18,8 +19,8 @@ public class CollectionDatabase implements Database<DBCollections, KVDatabase<?,
         dbCollections.put(DBCollections.Products, new MemoryProductDB());
     }
 
-    public KVDatabase<String, Item> getProducts() {
-        return (KVDatabase<String, Item>) getCollection(DBCollections.Products);
+    public KVDatabase<UUID, Item> getProducts() {
+        return (KVDatabase<UUID, Item>) getCollection(DBCollections.Products);
     }
 
     @Override

@@ -7,6 +7,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import me.piguy.assignment.ConfigurationManager;
@@ -28,6 +29,7 @@ public class InventoryPane extends MainWindowPane {
     public TableColumn<Item, String> categoryCol;
     @FXML
     public TableColumn<Item, Double> priceCol;
+    public TableColumn<Item, String> descCol;
 
     ObservableList<Item> items;
 
@@ -46,37 +48,45 @@ public class InventoryPane extends MainWindowPane {
         quantityCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setQuantity(e.getNewValue());
-            config.database.getProducts().setValue(item.getName(), item);
+            config.database.getProducts().setValue(item.id, item);
         });
 
-        nameCol.setCellFactory(col -> new TextFieldTableCell<>());
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
         nameCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setName(e.getNewValue());
-            config.database.getProducts().setValue(item.getName(), item);
+            config.database.getProducts().setValue(item.id, item);
         });
 
-        categoryCol.setCellFactory(col -> new TextFieldTableCell<>());
+        categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
         categoryCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setCategory(e.getNewValue());
-            config.database.getProducts().setValue(item.getName(), item);
+            config.database.getProducts().setValue(item.id, item);
         });
 
         priceCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         priceCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setPrice(e.getNewValue());
-            config.database.getProducts().setValue(item.getName(), item);
+            config.database.getProducts().setValue(item.id, item);
+        });
+
+        descCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        descCol.setOnEditCommit(e -> {
+            Item item = e.getRowValue();
+            item.setDescription(e.getNewValue());
+            config.database.getProducts().setValue(item.id, item);
         });
     }
 
     public void addItem() {
-        items.add(new Item(1, "Placeholder", "Placeholder", 0.99, 10));
+        items.add(new Item(1, "Placeholder", "Placeholder", 0.99));
     }
+
     public void deleteItem() {
         Item selectedItem = tableView.getSelectionModel().getSelectedItem();
         items.removeAll(selectedItem);
-        config.database.getProducts().dropValue(selectedItem.getName());
+        config.database.getProducts().dropValue(selectedItem.id);
     }
 }
