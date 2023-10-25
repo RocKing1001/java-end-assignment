@@ -4,14 +4,16 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import me.piguy.assignment.database.CollectionDatabase;
 import me.piguy.assignment.database.DBCollections;
 import me.piguy.assignment.database.KVDatabase;
 import me.piguy.assignment.models.Item;
 import org.apache.commons.lang3.SerializationUtils;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class AddProductWindow extends PopupWindow {

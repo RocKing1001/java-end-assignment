@@ -2,8 +2,6 @@ package me.piguy.assignment.pane;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import me.piguy.assignment.models.User;
 
 import java.io.IOException;
 

@@ -1,6 +1,5 @@
 package me.piguy.assignment;
 
-import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import me.piguy.assignment.database.DBCollections;
 import me.piguy.assignment.database.KVDatabase;
 import me.piguy.assignment.models.User;
 import me.piguy.assignment.pane.ContentPane;
-import me.piguy.assignment.pane.DashboardPaneController;
 import me.piguy.assignment.pane.MainWindowPane;
 
 public class LoginScreenController {

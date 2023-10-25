@@ -1,7 +1,5 @@
 package me.piguy.assignment.database;
 
-import me.piguy.assignment.models.User;
-
 import java.io.Serializable;
 import java.util.List;
 
