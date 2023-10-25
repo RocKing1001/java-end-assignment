@@ -11,6 +11,7 @@ import java.util.List;
 public interface KVDatabase<K,V> extends Serializable {
     public V getValue(K key);
     public void setValue(K key, V value);
+    public void dropValue(K key);
 
     public List<V> getAllValues();
 }

@@ -29,11 +29,10 @@ public class DashboardPaneController extends MainWindowPane {
         username.setText(user.username);
         role.setText(user.role.displayName);
 
-        config.scheduler.scheduleAtFixedRate(() -> {
-            Platform.runLater(() -> {
-                time.setText("It is now: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
-            });
-        }, 0, 1, TimeUnit.SECONDS);
+        config.scheduler.scheduleAtFixedRate(() -> Platform.runLater(() ->
+                        time.setText("It is now: " + LocalDateTime.now()
+                                .format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")))),
+                0, 1, TimeUnit.SECONDS);
     }
 
     public void setUser(User user) {

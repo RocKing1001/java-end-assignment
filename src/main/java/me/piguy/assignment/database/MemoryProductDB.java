@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class MemoryProductDB implements KVDatabase<String, Item> {
 
-    HashMap<String, Item> items;
+    private HashMap<String, Item> items;
 
     public MemoryProductDB(HashMap<String, Item> defaultUsers) {
         items = defaultUsers;
@@ -29,6 +29,11 @@ public class MemoryProductDB implements KVDatabase<String, Item> {
     @Override
     public void setValue(String name, Item item) {
         items.put(name, item);
+    }
+
+    @Override
+    public void dropValue(String key) {
+        items.remove(key);
     }
 
     @Override

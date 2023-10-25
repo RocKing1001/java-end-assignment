@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class MemoryUserDB implements KVDatabase<String, User> {
 
-    HashMap<String, User> users;
+    private HashMap<String, User> users;
 
     public MemoryUserDB(HashMap<String, User> defaultUsers) {
         users = defaultUsers;
@@ -29,6 +29,11 @@ public class MemoryUserDB implements KVDatabase<String, User> {
     @Override
     public void setValue(String name, User user) {
         users.put(name, user);
+    }
+
+    @Override
+    public void dropValue(String key) {
+        users.remove(key);
     }
 
     @Override

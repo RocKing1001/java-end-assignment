@@ -1,5 +1,7 @@
 package me.piguy.assignment.database;
 
+import me.piguy.assignment.models.Item;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -14,6 +16,10 @@ public class CollectionDatabase implements Database<DBCollections, KVDatabase<?,
 
         dbCollections.put(DBCollections.Users, new MemoryUserDB());
         dbCollections.put(DBCollections.Products, new MemoryProductDB());
+    }
+
+    public KVDatabase<String, Item> getProducts() {
+        return (KVDatabase<String, Item>) getCollection(DBCollections.Products);
     }
 
     @Override
