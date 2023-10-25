@@ -1,11 +1,12 @@
 package me.piguy.assignment.database;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * A collection database which holds references to multiple KV databases
  */
-public class CollectionDatabase implements Database<DBCollections, KVDatabase<?,?>> {
+public class CollectionDatabase implements Database<DBCollections, KVDatabase<?,?>> , Serializable {
     HashMap<DBCollections, KVDatabase<?,?>> dbCollections;
 
     public CollectionDatabase() {
@@ -22,7 +23,6 @@ public class CollectionDatabase implements Database<DBCollections, KVDatabase<?,
 
     @Override
     public void set(DBCollections collection, KVDatabase<?, ?> value) {
-        throw new RuntimeException("Not implemented");
+        dbCollections.put(collection, value);
     }
-
 }

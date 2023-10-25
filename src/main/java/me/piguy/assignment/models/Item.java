@@ -1,10 +1,13 @@
 package me.piguy.assignment.models;
 
-public class Item implements Cloneable {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     private int quantity;
     private String name;
     private String category;
     private double price;
+    public final int id;
 
     public int getQuantity() {
         return quantity;
@@ -38,19 +41,16 @@ public class Item implements Cloneable {
         this.price = price;
     }
 
-    public Item(int quantity, String name, String category, double price) {
+    public Item(int quantity, String name, String category, double price, int id) {
         this.quantity = quantity;
         this.name = name;
         this.category = category;
         this.price = price;
+        this.id = id;
     }
 
-    @Override
-    public Item clone() {
-        try {
-            return (Item) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
+    public Item withMoreQuantity(int quantity) {
+        return new Item(this.quantity + quantity, this.name, this.category, this.price, this.id);
     }
+
 }

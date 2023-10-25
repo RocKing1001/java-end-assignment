@@ -1,6 +1,7 @@
 module me.piguy.assignment {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.apache.commons.lang3;
 
 
     opens me.piguy.assignment to javafx.fxml;

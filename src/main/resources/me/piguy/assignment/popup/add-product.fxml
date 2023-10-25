@@ -43,11 +43,11 @@
                 </TableView>
                 <HBox spacing="10.0">
                     <Label prefWidth="100.0" text="Quantity"/>
-                    <TextField/>
+                    <TextField fx:id="quantity"/>
                 </HBox>
                 <HBox spacing="10.0">
-                    <Button onAction="#addToOrder" mnemonicParsing="false" text="Add to order"/>
-                    <Button mnemonicParsing="false" text="Cancel"/>
+                    <Button onAction="#addToOrder" fx:id="addOrderBtn" mnemonicParsing="false" text="Add to order"/>
+                    <Button onAction="#cancel" mnemonicParsing="false" text="Cancel"/>
                 </HBox>
             </children>
             <padding>

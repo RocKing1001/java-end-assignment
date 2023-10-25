@@ -7,88 +7,94 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.assignment.pane.CreateOrderPaneController">
-    <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.assignment.pane.CreateOrderPaneController">
+    <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="0.0">
         <VBox fx:id="navMenu" spacing="8.0" style="-fx-background-color: #952323;">
-            <Button onAction="#navDashboard" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Dashboard" textFill="WHITE">
+            <Button onAction="#navDashboard" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Dashboard"
+                    textFill="WHITE">
                 <cursor>
-                    <Cursor fx:constant="HAND" />
+                    <Cursor fx:constant="HAND"/>
                 </cursor>
             </Button>
-            <Button onAction="#navCreateOrder" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Create order" textFill="WHITE">
+            <Button onAction="#navCreateOrder" prefWidth="150.0" style="-fx-background-color: #a73121;"
+                    text="Create order" textFill="WHITE">
                 <cursor>
-                    <Cursor fx:constant="HAND" />
+                    <Cursor fx:constant="HAND"/>
                 </cursor>
             </Button>
-            <Button onAction="#navProductInventory" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Product inventory" textFill="WHITE">
+            <Button onAction="#navProductInventory" prefWidth="150.0" style="-fx-background-color: #a73121;"
+                    text="Product inventory" textFill="WHITE">
                 <cursor>
-                    <Cursor fx:constant="HAND" />
+                    <Cursor fx:constant="HAND"/>
                 </cursor>
             </Button>
-            <Button onAction="#navOrderHistory" prefWidth="150.0" style="-fx-background-color: #a73121;" text="Order history" textFill="WHITE">
+            <Button onAction="#navOrderHistory" prefWidth="150.0" style="-fx-background-color: #a73121;"
+                    text="Order history" textFill="WHITE">
                 <cursor>
-                    <Cursor fx:constant="HAND" />
+                    <Cursor fx:constant="HAND"/>
                 </cursor>
             </Button>
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="40.0" />
+                <Insets bottom="20.0" left="20.0" right="20.0" top="40.0"/>
             </padding>
         </VBox>
         <VBox spacing="4.0" HBox.hgrow="ALWAYS">
             <Label text="Create order">
                 <font>
-                    <Font size="22.0" />
+                    <Font size="22.0"/>
                 </font>
                 <VBox.margin>
-                    <Insets />
+                    <Insets/>
                 </VBox.margin>
             </Label>
             <Label text="Customer information">
                 <font>
-                    <Font size="18.0" />
+                    <Font size="18.0"/>
                 </font>
             </Label>
             <HBox fillHeight="false">
-                <Label minWidth="105.0" text="First name" />
-                <TextField promptText="First name" />
+                <Label minWidth="105.0" text="First name"/>
+                <TextField promptText="First name" fx:id="firstName"/>
             </HBox>
             <HBox fillHeight="false" layoutX="20.0" layoutY="92.0">
-                <Label minWidth="105.0" text="Last name" />
-                <TextField promptText="Last name" />
+                <Label minWidth="105.0" text="Last name"/>
+                <TextField promptText="Last name" fx:id="lastName"/>
             </HBox>
             <HBox fillHeight="false" layoutX="20.0" layoutY="122.0">
-                <Label minWidth="105.0" text="E-mail address" />
-                <TextField promptText="E-mail address" />
+                <Label minWidth="105.0" text="E-mail address"/>
+                <TextField promptText="E-mail address" fx:id="emailAddress"/>
             </HBox>
             <HBox fillHeight="false" layoutX="20.0" layoutY="152.0">
-                <Label minWidth="105.0" text="Phone number" />
-                <TextField promptText="Phone number" />
+                <Label minWidth="105.0" text="Phone number"/>
+                <TextField promptText="Phone number" fx:id="phoneNumber"/>
             </HBox>
             <Label layoutX="20.0" layoutY="66.0" text="Products">
                 <font>
-                    <Font size="18.0" />
+                    <Font size="18.0"/>
                 </font>
             </Label>
             <TableView fx:id="tableOfOrders">
                 <columns>
                     <TableColumn text="Quantity">
                         <cellValueFactory>
-                            <PropertyValueFactory property="quantity" />
+                            <PropertyValueFactory property="quantity"/>
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn text="Name">
                         <cellValueFactory>
-                            <PropertyValueFactory property="name" />
+                            <PropertyValueFactory property="name"/>
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn text="Category">
                         <cellValueFactory>
-                            <PropertyValueFactory property="category" />
+                            <PropertyValueFactory property="category"/>
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn text="Price">
                         <cellValueFactory>
-                            <PropertyValueFactory property="price" />
+                            <PropertyValueFactory property="price"/>
                         </cellValueFactory>
                     </TableColumn>
                 </columns>
@@ -96,22 +102,24 @@
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                 <Button mnemonicParsing="false" onAction="#addItem" text="Add product">
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </Button>
-                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteSelected" text="Delete product">
+                <Button fx:id="deleteBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
+                        onAction="#deleteSelected" text="Delete product">
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </Button>
-                <Button layoutX="70.0" layoutY="10.0" mnemonicParsing="false" text="Create order">
+                <Button fx:id="createOrderBtn" onAction="#createOrder" layoutX="70.0" layoutY="10.0"
+                        mnemonicParsing="false" text="Create order">
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </Button>
             </HBox>
             <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                <Insets bottom="10.0" left="10.0" right="10.0" top="20.0"/>
             </padding>
         </VBox>
     </HBox>

@@ -25,7 +25,8 @@ public class TestCollectionDatabase extends CollectionDatabase {
 
         // products
         KVDatabase<String, Item> products = (KVDatabase<String, Item>) getCollection(DBCollections.Products);
-        products.setValue("Fender Stratocaster", new Item(10, "Fender Stratocaster", "Guitar", 2199.99));
+        products.setValue("Fender Stratocaster", new Item(10, "Fender Stratocaster", "Guitar", 2199.99, 1));
+        products.setValue("Squire Stratocaster", new Item(13, "Squire Stratocaster", "Guitar", 289.98, 2));
 
     }
 }

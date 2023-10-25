@@ -7,9 +7,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public abstract class PopupWindow {
+    Stage stage;
     public void showPopup() {
         FXMLLoader loader = new FXMLLoader(Popup.class.getResource(getPopup().fxmlFile));
         Stage stage = new Stage();
+        this.stage = stage;
         loader.setController(getController());
         try {
             Scene scene = new Scene(loader.load());
@@ -18,6 +20,10 @@ public abstract class PopupWindow {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    protected void closePopup() {
+        stage.close();
     }
 
     protected abstract Popup getPopup();

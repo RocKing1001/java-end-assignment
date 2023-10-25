@@ -1,5 +1,7 @@
 package me.piguy.assignment.encryption;
 
-public interface Encryption {
+import java.io.Serializable;
+
+public interface Encryption extends Serializable {
     String encrypt(String value);
 }

@@ -1,6 +1,8 @@
 package me.piguy.assignment.models;
 
-public enum Role {
+import java.io.Serializable;
+
+public enum Role implements Serializable {
     IT("IT Technician"),
     Sales;
 
