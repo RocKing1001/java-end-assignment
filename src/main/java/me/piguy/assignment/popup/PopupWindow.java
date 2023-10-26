@@ -7,9 +7,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public abstract class PopupWindow {
-    Stage stage;
+    private Stage stage;
     public void showPopup() {
-        FXMLLoader loader = new FXMLLoader(Popup.class.getResource(getPopup().fxmlFile));
+        FXMLLoader loader = new FXMLLoader(Popup.class.getResource(getPopup().getFxmlFile()));
         Stage stage = new Stage();
         this.stage = stage;
         loader.setController(getController());

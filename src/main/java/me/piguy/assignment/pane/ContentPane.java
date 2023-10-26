@@ -11,12 +11,12 @@ public enum ContentPane {
     ProductInventory("product-inventory.fxml", "Product inventory"),
     OrderHistory("order-history.fxml", "Order history");
 
-    public final String displayName;
-    public final String fxmlFile;
+    private final String displayName;
+    private final String fxmlFile;
 
 
     public FXMLLoader getLoader() {
-        return new FXMLLoader(ContentPane.class.getResource(fxmlFile));
+        return new FXMLLoader(ContentPane.class.getResource(getFxmlFile()));
     }
 
     @Deprecated
@@ -37,5 +37,13 @@ public enum ContentPane {
     ContentPane(String fxmlFile, String displayName) {
         this.displayName = displayName;
         this.fxmlFile = fxmlFile;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public String getFxmlFile() {
+        return fxmlFile;
     }
 }

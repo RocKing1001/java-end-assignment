@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import me.piguy.assignment.ConfigurationManager;
 import me.piguy.assignment.database.KVPersistentDB;
@@ -19,21 +18,20 @@ public class OrderHistoryPane extends MainWindowPane {
 
     // Orders table
     @FXML
-    public TableView<Order> ordersTable;
-    ObservableList<Order> ordersList;
+    private TableView<Order> ordersTable;
 
     // Order items table
     @FXML
-    public TableView<Item> orderItemsTable;
-    ObservableList<Item> itemsList;
+    private TableView<Item> orderItemsTable;
+    private ObservableList<Item> itemsList;
 
     @Override
     public void init(User user, ConfigurationManager config) {
         super.init(user, config);
 
-        KVPersistentDB<UUID, Order> orderDB = config.database.getOrders();
+        KVPersistentDB<UUID, Order> orderDB = config.getDatabase().getOrders();
 
-        this.ordersList = FXCollections.observableArrayList(orderDB.getAllValues());
+        ObservableList<Order> ordersList = FXCollections.observableArrayList(orderDB.getAllValues());
         ordersTable.setItems(ordersList);
         ordersTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 

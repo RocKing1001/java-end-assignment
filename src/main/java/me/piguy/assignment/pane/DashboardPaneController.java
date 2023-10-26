@@ -12,11 +12,11 @@ import java.util.concurrent.TimeUnit;
 
 public class DashboardPaneController extends MainWindowPane {
     @FXML
-    Label username;
+    private Label username;
     @FXML
-    Label role;
+    private Label role;
     @FXML
-    Label time;
+    private Label time;
 
     public DashboardPaneController() {
         super();
@@ -26,10 +26,10 @@ public class DashboardPaneController extends MainWindowPane {
     public void init(User user, ConfigurationManager config) {
         super.init(user, config);
 
-        username.setText(user.username);
-        role.setText(user.role.displayName);
+        username.setText(user.getUsername());
+        role.setText(user.getRole().displayName);
 
-        config.scheduler.scheduleAtFixedRate(() -> Platform.runLater(() ->
+        config.getScheduler().scheduleAtFixedRate(() -> Platform.runLater(() ->
                         time.setText("It is now: " + LocalDateTime.now()
                                 .format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")))),
                 0, 1, TimeUnit.SECONDS);

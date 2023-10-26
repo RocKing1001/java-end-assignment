@@ -13,31 +13,35 @@ import java.io.IOException;
 
 public abstract class MainWindowPane {
     @FXML
-    Pane currentPane;
+    private Pane currentPane;
     @FXML
-    VBox navMenu;
+    private VBox navMenu;
 
-    User user;
-    ConfigurationManager config;
+    protected User user;
+    protected ConfigurationManager config;
 
     public void init(User user, ConfigurationManager config) {
         this.user = user;
         this.config = config;
     }
 
-    public void navDashboard() {
+    @FXML
+    protected void navDashboard() {
         navigatePane(ContentPane.Dashboard);
     }
 
-    public void navCreateOrder() {
+    @FXML
+    protected void navCreateOrder() {
         navigatePane(ContentPane.CreateOrder);
     }
 
-    public void navProductInventory() {
+    @FXML
+    protected void navProductInventory() {
         navigatePane(ContentPane.ProductInventory);
     }
 
-    public void navOrderHistory() {
+    @FXML
+    protected void navOrderHistory() {
         navigatePane(ContentPane.OrderHistory);
     }
 

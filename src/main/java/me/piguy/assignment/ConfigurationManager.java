@@ -8,11 +8,30 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 public class ConfigurationManager {
-    public CollectionDatabase database = new CollectionDatabase();
-    public Encryption encryption;
-    public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private CollectionDatabase database = new CollectionDatabase();
+    private Encryption encryption;
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     public ConfigurationManager() {
-       encryption = new NoEncryption();
+       setEncryption(new NoEncryption());
     }
 
+    public CollectionDatabase getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(CollectionDatabase database) {
+        this.database = database;
+    }
+
+    public Encryption getEncryption() {
+        return encryption;
+    }
+
+    public void setEncryption(Encryption encryption) {
+        this.encryption = encryption;
+    }
+
+    public ScheduledExecutorService getScheduler() {
+        return scheduler;
+    }
 }

@@ -21,7 +21,7 @@ public class Main extends Application {
 
         // Set the scheduler field
         // This is so I can gracefully shut it down
-        scheduler = config.scheduler;
+        scheduler = config.getScheduler();
 
         // Load the login window
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-screen.fxml"));

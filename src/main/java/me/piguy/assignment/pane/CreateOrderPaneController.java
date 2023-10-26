@@ -3,7 +3,6 @@ package me.piguy.assignment.pane;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
@@ -26,22 +25,22 @@ import java.util.UUID;
 
 public class CreateOrderPaneController extends MainWindowPane {
     @FXML
-    public TableView<Item> tableOfOrders;
+    private TableView<Item> tableOfOrders;
     @FXML
-    public Button deleteBtn;
+    private Button deleteBtn;
     @FXML
-    public Button createOrderBtn;
+    private Button createOrderBtn;
     @FXML
-    public TextField phoneNumber;
+    private TextField phoneNumber;
     @FXML
-    public TextField emailAddress;
+    private TextField emailAddress;
     @FXML
-    public TextField lastName;
+    private TextField lastName;
     @FXML
-    public TextField firstName;
+    private TextField firstName;
 
 
-    public ObservableList<Item> orders;
+    private ObservableList<Item> orders;
 
     // This database is a clone of the original items database
     // the original will not be modified unless an order is created
@@ -50,7 +49,7 @@ public class CreateOrderPaneController extends MainWindowPane {
     // I was going to make some form of a staging system, where the database
     // class holds a copy of itself, but such a feature is only needed here
     // please gods of memory, please don't smite me
-    public CollectionDatabase clonedDb;
+    private CollectionDatabase clonedDb;
 
     @Override
     public void init(User user, ConfigurationManager config) {
@@ -58,7 +57,7 @@ public class CreateOrderPaneController extends MainWindowPane {
 
         this.orders = FXCollections.observableArrayList(new ArrayList<>());
         this.tableOfOrders.setItems(orders);
-        this.clonedDb = SerializationUtils.clone(config.database);
+        this.clonedDb = SerializationUtils.clone(config.getDatabase());
     }
 
     public void addItem() {
@@ -88,9 +87,9 @@ public class CreateOrderPaneController extends MainWindowPane {
     }
 
     public void createOrder() {
-        config.database.set(DBCollections.Products, clonedDb.getCollection(DBCollections.Products));
+        config.getDatabase().set(DBCollections.Products, clonedDb.getCollection(DBCollections.Products));
 
-        KVPersistentDB<UUID, Order> orderDB = config.database.getOrders();
+        KVPersistentDB<UUID, Order> orderDB = config.getDatabase().getOrders();
 
         Order newOrder = new Order(
                 new Date(),

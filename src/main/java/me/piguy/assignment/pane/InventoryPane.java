@@ -19,23 +19,24 @@ import java.util.List;
 public class InventoryPane extends MainWindowPane {
 
     @FXML
-    public TableView<Item> tableView;
+    private TableView<Item> tableView;
     @FXML
-    public TableColumn<Item, Integer> quantityCol;
+    private TableColumn<Item, Integer> quantityCol;
     @FXML
-    public TableColumn<Item, String> nameCol;
+    private TableColumn<Item, String> nameCol;
     @FXML
-    public TableColumn<Item, String> categoryCol;
+    private TableColumn<Item, String> categoryCol;
     @FXML
-    public TableColumn<Item, Double> priceCol;
-    public TableColumn<Item, String> descCol;
+    private TableColumn<Item, Double> priceCol;
+    @FXML
+    private TableColumn<Item, String> descCol;
 
-    ObservableList<Item> items;
+    private ObservableList<Item> items;
 
     @Override
     public void init(User user, ConfigurationManager config) {
         super.init(user, config);
-        this.items = FXCollections.observableArrayList((List<Item>) config.database.getCollection(DBCollections.Products).getAllValues());
+        this.items = FXCollections.observableArrayList((List<Item>) config.getDatabase().getCollection(DBCollections.Products).getAllValues());
         tableView.setItems(items);
     }
 
@@ -47,35 +48,35 @@ public class InventoryPane extends MainWindowPane {
         quantityCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setQuantity(e.getNewValue());
-            config.database.getProducts().setValue(item.id, item);
+            config.getDatabase().getProducts().setValue(item.id, item);
         });
 
         nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
         nameCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setName(e.getNewValue());
-            config.database.getProducts().setValue(item.id, item);
+            config.getDatabase().getProducts().setValue(item.id, item);
         });
 
         categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
         categoryCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setCategory(e.getNewValue());
-            config.database.getProducts().setValue(item.id, item);
+            config.getDatabase().getProducts().setValue(item.id, item);
         });
 
         priceCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         priceCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setPrice(e.getNewValue());
-            config.database.getProducts().setValue(item.id, item);
+            config.getDatabase().getProducts().setValue(item.id, item);
         });
 
         descCol.setCellFactory(TextFieldTableCell.forTableColumn());
         descCol.setOnEditCommit(e -> {
             Item item = e.getRowValue();
             item.setDescription(e.getNewValue());
-            config.database.getProducts().setValue(item.id, item);
+            config.getDatabase().getProducts().setValue(item.id, item);
         });
     }
 
@@ -86,6 +87,6 @@ public class InventoryPane extends MainWindowPane {
     public void deleteItem() {
         Item selectedItem = tableView.getSelectionModel().getSelectedItem();
         items.removeAll(selectedItem);
-        config.database.getProducts().dropValue(selectedItem.id);
+        config.getDatabase().getProducts().dropValue(selectedItem.id);
     }
 }

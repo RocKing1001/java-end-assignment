@@ -18,24 +18,24 @@ public class LoginScreenController {
     KVPersistentDB<String, User> db;
 
     @FXML
-    TextField username;
+    private TextField username;
     @FXML
-    TextField password;
+    private TextField password;
 
     @FXML
-    Label errorText;
+    private Label errorText;
 
     @FXML
-    Button loginButton = new Button();
+    public Button loginButton = new Button();
 
-    ConfigurationManager config;
+    private final ConfigurationManager config;
 
     public LoginScreenController(ConfigurationManager config) {
         this.config = config;
-        this.db = (KVPersistentDB<String, User>) config.database.getCollection(DBCollections.Users);
+        this.db = (KVPersistentDB<String, User>) config.getDatabase().getCollection(DBCollections.Users);
     }
 
-    boolean areInputsEmpty() {
+    private boolean areInputsEmpty() {
         // master and slave
         return username.getText().isEmpty() || password.getText().isEmpty();
     }

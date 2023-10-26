@@ -22,11 +22,11 @@ public class AddProductWindow extends PopupWindow {
     private final ObservableList<Item> ordersList;
 
     @FXML
-    TableView<Item> tableView;
+    private TableView<Item> tableView;
     @FXML
-    Button addOrderBtn;
+    private Button addOrderBtn;
     @FXML
-    TextField quantity;
+    private TextField quantity;
 
     private final ObservableList<Item> items;
     private final CollectionDatabase database;
