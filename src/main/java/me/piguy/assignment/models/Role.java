@@ -3,7 +3,7 @@ package me.piguy.assignment.models;
 import java.io.Serializable;
 
 public enum Role implements Serializable {
-    IT("IT Technician"),
+    IT("App admin"),
     Sales;
 
     public final String displayName;

@@ -10,8 +10,8 @@ import java.util.UUID;
 /**
  * A collection database which holds references to multiple KV databases
  */
-public class CollectionDatabase implements Database<DBCollections, KVDatabase<?,?>> , Serializable {
-    private final HashMap<DBCollections, KVDatabase<?,?>> dbCollections;
+public class CollectionDatabase implements Database<DBCollections, KVPersistentDB<?,?>> , Serializable {
+    private final HashMap<DBCollections, KVPersistentDB<?,?>> dbCollections;
 
     public CollectionDatabase() {
         this.dbCollections = new HashMap<>();
@@ -21,21 +21,21 @@ public class CollectionDatabase implements Database<DBCollections, KVDatabase<?,
         dbCollections.put(DBCollections.Orders, new MemoryOrderDB());
     }
 
-    public KVDatabase<UUID, Item> getProducts() {
-        return (KVDatabase<UUID, Item>) getCollection(DBCollections.Products);
+    public KVPersistentDB<UUID, Item> getProducts() {
+        return (KVPersistentDB<UUID, Item>) getCollection(DBCollections.Products);
     }
 
-    public KVDatabase<UUID, Order> getOrders() {
-        return (KVDatabase<UUID, Order>) getCollection(DBCollections.Orders);
+    public KVPersistentDB<UUID, Order> getOrders() {
+        return (KVPersistentDB<UUID, Order>) getCollection(DBCollections.Orders);
     }
 
     @Override
-    public KVDatabase<?, ?> getCollection(DBCollections collection) {
+    public KVPersistentDB<?, ?> getCollection(DBCollections collection) {
         return dbCollections.get(collection);
     }
 
     @Override
-    public void set(DBCollections collection, KVDatabase<?, ?> value) {
+    public void set(DBCollections collection, KVPersistentDB<?, ?> value) {
         dbCollections.put(collection, value);
     }
 }

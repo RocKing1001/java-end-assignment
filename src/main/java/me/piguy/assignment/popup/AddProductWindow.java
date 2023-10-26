@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import me.piguy.assignment.database.CollectionDatabase;
 import me.piguy.assignment.database.DBCollections;
-import me.piguy.assignment.database.KVDatabase;
+import me.piguy.assignment.database.KVPersistentDB;
 import me.piguy.assignment.models.Item;
 import org.apache.commons.lang3.SerializationUtils;
 
@@ -94,7 +94,7 @@ public class AddProductWindow extends PopupWindow {
         ordersList.add(itemToAdd);
 
         // reduce the quantity in the db
-        KVDatabase<UUID, Item> productDb = (KVDatabase<UUID, Item>) database.getCollection(DBCollections.Products);
+        KVPersistentDB<UUID, Item> productDb = (KVPersistentDB<UUID, Item>) database.getCollection(DBCollections.Products);
         productDb.setValue(selectedItem.id, selectedItem);
 
         this.closePopup();

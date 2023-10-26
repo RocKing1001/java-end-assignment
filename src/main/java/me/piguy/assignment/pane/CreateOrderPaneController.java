@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import me.piguy.assignment.ConfigurationManager;
 import me.piguy.assignment.database.CollectionDatabase;
 import me.piguy.assignment.database.DBCollections;
-import me.piguy.assignment.database.KVDatabase;
+import me.piguy.assignment.database.KVPersistentDB;
 import me.piguy.assignment.models.Item;
 import me.piguy.assignment.models.Order;
 import me.piguy.assignment.models.User;
@@ -68,7 +68,7 @@ public class CreateOrderPaneController extends MainWindowPane {
 
     public void deleteSelected(ActionEvent actionEvent) {
         Item selectedItem = tableOfOrders.getSelectionModel().getSelectedItem();
-        KVDatabase<UUID, Item> products = (KVDatabase<UUID, Item>) clonedDb.getCollection(DBCollections.Products);
+        KVPersistentDB<UUID, Item> products = (KVPersistentDB<UUID, Item>) clonedDb.getCollection(DBCollections.Products);
 
 
         Item newValue = products.getValue(selectedItem.id);
@@ -90,7 +90,7 @@ public class CreateOrderPaneController extends MainWindowPane {
     public void createOrder() {
         config.database.set(DBCollections.Products, clonedDb.getCollection(DBCollections.Products));
 
-        KVDatabase<UUID, Order> orderDB = config.database.getOrders();
+        KVPersistentDB<UUID, Order> orderDB = config.database.getOrders();
 
         Order newOrder = new Order(
                 new Date(),

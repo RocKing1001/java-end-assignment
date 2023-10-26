@@ -9,13 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import me.piguy.assignment.database.DBCollections;
-import me.piguy.assignment.database.KVDatabase;
+import me.piguy.assignment.database.KVPersistentDB;
 import me.piguy.assignment.models.User;
 import me.piguy.assignment.pane.ContentPane;
 import me.piguy.assignment.pane.MainWindowPane;
 
 public class LoginScreenController {
-    KVDatabase<String, User> db;
+    KVPersistentDB<String, User> db;
 
     @FXML
     TextField username;
@@ -32,7 +32,7 @@ public class LoginScreenController {
 
     public LoginScreenController(ConfigurationManager config) {
         this.config = config;
-        this.db = (KVDatabase<String, User>) config.database.getCollection(DBCollections.Users);
+        this.db = (KVPersistentDB<String, User>) config.database.getCollection(DBCollections.Users);
     }
 
     boolean areInputsEmpty() {

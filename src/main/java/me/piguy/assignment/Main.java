@@ -16,7 +16,8 @@ public class Main extends Application {
         ConfigurationManager config = new ConfigurationManager();
 
         // Initialise DB
-        config.database.initTestData();
+        // this happens automatically
+        //config.database.initTestData();
 
         // Set the scheduler field
         // This is so I can gracefully shut it down
