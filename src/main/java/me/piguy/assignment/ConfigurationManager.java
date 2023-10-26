@@ -1,7 +1,6 @@
 package me.piguy.assignment;
 
 import me.piguy.assignment.database.CollectionDatabase;
-import me.piguy.assignment.database.TestCollectionDatabase;
 import me.piguy.assignment.encryption.Encryption;
 import me.piguy.assignment.encryption.NoEncryption;
 

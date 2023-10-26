@@ -4,7 +4,6 @@ import me.piguy.assignment.models.Role;
 import me.piguy.assignment.models.User;
 
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * An in memory key-value database which makes use of a hashmap
