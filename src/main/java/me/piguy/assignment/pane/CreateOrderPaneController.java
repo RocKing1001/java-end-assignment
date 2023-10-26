@@ -66,7 +66,7 @@ public class CreateOrderPaneController extends MainWindowPane {
         addItemWindow.showPopup();
     }
 
-    public void deleteSelected(ActionEvent actionEvent) {
+    public void deleteSelected() {
         Item selectedItem = tableOfOrders.getSelectionModel().getSelectedItem();
         KVPersistentDB<UUID, Item> products = (KVPersistentDB<UUID, Item>) clonedDb.getCollection(DBCollections.Products);
 

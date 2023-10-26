@@ -28,8 +28,8 @@ public class AddProductWindow extends PopupWindow {
     @FXML
     TextField quantity;
 
-    private ObservableList<Item> items;
-    private CollectionDatabase database;
+    private final ObservableList<Item> items;
+    private final CollectionDatabase database;
 
 
     /**
@@ -47,11 +47,11 @@ public class AddProductWindow extends PopupWindow {
         return Integer.parseInt(quantity.getText());
     }
 
-    private boolean isQuantityValid() {
+    private boolean isQuantityInvalid() {
         try {
-            return getQuantityToAdd() > 0;
+            return getQuantityToAdd() <= 0;
         } catch (NumberFormatException e) {
-            return false;
+            return true;
         }
     }
 
@@ -63,7 +63,7 @@ public class AddProductWindow extends PopupWindow {
         Item selectedItem = getSelectedItem();
         if (selectedItem == null) {
             return true;
-        } else if (!isQuantityValid()) {
+        } else if (isQuantityInvalid()) {
             return true;
         } else return selectedItem.getQuantity() < getQuantityToAdd();
     }
@@ -73,7 +73,7 @@ public class AddProductWindow extends PopupWindow {
     }
 
     public void addToOrder() {
-        if (!isQuantityValid()) return;
+        if (isQuantityInvalid()) return;
 
         Item selectedItem = getSelectedItem();
 

@@ -17,6 +17,7 @@ public class TestCollectionDatabase extends CollectionDatabase {
     // this is a separate function because I don't want
     // the config manager to ever create new classes within its classes
     // this is to prevent recursion
+    @Deprecated
     public void initTestData() {
         // users
         KVPersistentDB<String,User> users = (KVPersistentDB<String, User>) getCollection(DBCollections.Users);

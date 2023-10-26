@@ -18,7 +18,7 @@ public abstract class KVPersistentDB<K, V> implements Serializable {
     protected HashMap<K, V> data = new HashMap<>();
 
     public KVPersistentDB() {
-        File file = getPreppedFile();
+        getPreppedFile();
         this.data = getDataFromFile();
     }
 
