@@ -77,7 +77,7 @@ public abstract class KVPersistentDB<K, V> implements Serializable {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(getOutputFileName()));
             hashMap = (HashMap<K, V>) ois.readObject();
         } catch (IOException | ClassNotFoundException e ) {
-            System.err.println("BITCH" + e.getMessage());
+            System.err.println(e.getMessage());
         }
 
         return hashMap;
