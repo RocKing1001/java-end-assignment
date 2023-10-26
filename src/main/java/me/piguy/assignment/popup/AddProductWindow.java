@@ -15,6 +15,7 @@ import me.piguy.assignment.models.Item;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.List;
+import java.util.UUID;
 
 public class AddProductWindow extends PopupWindow {
     private final Popup popup = Popup.AddItem;
@@ -93,8 +94,8 @@ public class AddProductWindow extends PopupWindow {
         ordersList.add(itemToAdd);
 
         // reduce the quantity in the db
-        KVDatabase<String, Item> productDb = (KVDatabase<String, Item>) database.getCollection(DBCollections.Products);
-        productDb.setValue(selectedItem.getName(), selectedItem);
+        KVDatabase<UUID, Item> productDb = (KVDatabase<UUID, Item>) database.getCollection(DBCollections.Products);
+        productDb.setValue(selectedItem.id, selectedItem);
 
         this.closePopup();
     }

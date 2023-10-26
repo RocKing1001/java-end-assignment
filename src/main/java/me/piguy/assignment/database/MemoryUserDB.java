@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class MemoryUserDB implements KVDatabase<String, User> {
 
-    private HashMap<String, User> users;
+    private final HashMap<String, User> users;
 
     public MemoryUserDB(HashMap<String, User> defaultUsers) {
         users = defaultUsers;

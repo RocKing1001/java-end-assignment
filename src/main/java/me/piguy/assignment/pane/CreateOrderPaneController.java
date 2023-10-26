@@ -14,11 +14,14 @@ import me.piguy.assignment.database.CollectionDatabase;
 import me.piguy.assignment.database.DBCollections;
 import me.piguy.assignment.database.KVDatabase;
 import me.piguy.assignment.models.Item;
+import me.piguy.assignment.models.Order;
 import me.piguy.assignment.models.User;
 import me.piguy.assignment.popup.AddProductWindow;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
 
 public class CreateOrderPaneController extends MainWindowPane {
@@ -65,20 +68,40 @@ public class CreateOrderPaneController extends MainWindowPane {
 
     public void deleteSelected(ActionEvent actionEvent) {
         Item selectedItem = tableOfOrders.getSelectionModel().getSelectedItem();
-        KVDatabase<String, Item> products = (KVDatabase<String, Item>) clonedDb.getCollection(DBCollections.Products);
+        KVDatabase<UUID, Item> products = (KVDatabase<UUID, Item>) clonedDb.getCollection(DBCollections.Products);
 
 
-        Item newValue = products.getValue(selectedItem.getName());
+        Item newValue = products.getValue(selectedItem.id);
         newValue.addQuantity(selectedItem.getQuantity());
 
-        products.setValue(selectedItem.getName(), newValue);
+        products.setValue(newValue.id, newValue);
 
         orders.remove(selectedItem);
     }
 
+    private void clearAllFields() {
+        orders.clear();
+        firstName.clear();
+        lastName.clear();
+        emailAddress.clear();
+        phoneNumber.clear();
+    }
+
     public void createOrder() {
         config.database.set(DBCollections.Products, clonedDb.getCollection(DBCollections.Products));
-        // TODO add to order database
+
+        KVDatabase<UUID, Order> orderDB = config.database.getOrders();
+
+        Order newOrder = new Order(
+                new Date(),
+                firstName.getText() + " " + lastName.getText(),
+                emailAddress.getText(),
+                phoneNumber.getText(),
+                orders.stream().toList()
+        );
+        orderDB.setValue(newOrder.getId(), newOrder);
+
+        clearAllFields();
     }
 
     private boolean isFormEmpty() {

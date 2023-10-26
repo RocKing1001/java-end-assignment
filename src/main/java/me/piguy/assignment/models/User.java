@@ -7,17 +7,17 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class User implements Serializable {
-    public String username;
-    public Role role;
+    public final String username;
+    public final Role role;
     /**
      * This will be encrypted usually
      */
     private String password;
 
-    Encryption encryption;
+    private final Encryption encryption;
 
     public boolean checkPassword(String password) {
-        return Objects.equals(this.password, password);
+        return Objects.equals(this.password, encryption.encrypt(password));
     }
 
     public void setPassword(String currentPassword, String newPassword) {
