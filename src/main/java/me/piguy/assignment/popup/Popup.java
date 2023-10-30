@@ -1,6 +1,7 @@
 package me.piguy.assignment.popup;
 
 public enum Popup {
+    CriticalException("critical-exception.fxml", "Exception"),
     AddItem("add-product.fxml", "Add product to order");
 
     private final String displayName;

@@ -7,12 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import me.piguy.assignment.database.DBCollections;
 import me.piguy.assignment.database.KVPersistentDB;
 import me.piguy.assignment.models.User;
 import me.piguy.assignment.pane.ContentPane;
 import me.piguy.assignment.pane.MainWindowPane;
+import me.piguy.assignment.popup.AccountLockedPopup;
+import me.piguy.assignment.util.exception.AccountLockedException;
 
 public class LoginScreenController {
     KVPersistentDB<String, User> db;
@@ -48,14 +51,23 @@ public class LoginScreenController {
         // get user
         User user = db.getValue(username.getText());
 
-        if (user == null || !user.checkPassword(password.getText())) {
-            showError("Invalid username/password combination");
-            return;
+        try {
+            if (user == null || !user.checkPassword(password.getText())) {
+                showError("Invalid username/password combination");
+            } else {
+                proceedLogin(user);
+            }
+        } catch (AccountLockedException e) {
+            // open a new popup
+            AccountLockedPopup popup = new AccountLockedPopup();
+            popup.showPopup();
         }
 
+    }
+
+    private void proceedLogin(User user) {
         // Load the xml file
         FXMLLoader loader = ContentPane.Dashboard.getLoader();
-
 
 
         try {
@@ -81,6 +93,7 @@ public class LoginScreenController {
             e.printStackTrace();
         }
     }
+
 
     public void initialize() {
         loginButton.disableProperty().bind(Bindings.createBooleanBinding(

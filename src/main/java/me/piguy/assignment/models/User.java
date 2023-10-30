@@ -2,6 +2,7 @@ package me.piguy.assignment.models;
 
 import me.piguy.assignment.ConfigurationManager;
 import me.piguy.assignment.encryption.Encryption;
+import me.piguy.assignment.util.exception.AccountLockedException;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,10 +12,21 @@ public class User implements Serializable {
     private final Role role;
     private String password;
 
+    private int failedLogins = 0;
+
     private final Encryption encryption;
 
-    public boolean checkPassword(String password) {
-        return Objects.equals(this.getPassword(), getEncryption().encrypt(password));
+    public boolean checkPassword(String password) throws AccountLockedException {
+        if (Objects.equals(this.getPassword(), getEncryption().encrypt(password))) {
+            failedLogins = 0;
+            return true;
+        } else {
+            failedLogins++;
+            if (failedLogins > 3) {
+                throw new AccountLockedException();
+            }
+            return false;
+        }
     }
 
     public void setPassword(String currentPassword, String newPassword) {

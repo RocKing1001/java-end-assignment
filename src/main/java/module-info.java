@@ -12,4 +12,5 @@ module me.piguy.assignment {
     exports me.piguy.assignment.database;
     exports me.piguy.assignment.encryption;
     exports me.piguy.assignment.pane;
+    exports me.piguy.assignment.util.exception;
 }
