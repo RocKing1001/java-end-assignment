@@ -1,6 +1,8 @@
 package me.piguy.assignment.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Item implements Serializable {
@@ -73,5 +75,4 @@ public class Item implements Serializable {
     public void addQuantity(int quantity) {
         this.setQuantity(this.quantity + quantity);
     }
-
 }
