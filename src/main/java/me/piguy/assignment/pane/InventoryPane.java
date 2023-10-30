@@ -1,11 +1,13 @@
 package me.piguy.assignment.pane;
 
+import javafx.beans.value.ObservableStringValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -14,10 +16,13 @@ import me.piguy.assignment.database.DBCollections;
 import me.piguy.assignment.models.Item;
 import me.piguy.assignment.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryPane extends MainWindowPane {
 
+    @FXML
+    private TextField searchField;
     @FXML
     private TableView<Item> tableView;
     @FXML
@@ -77,6 +82,18 @@ public class InventoryPane extends MainWindowPane {
             Item item = e.getRowValue();
             item.setDescription(e.getNewValue());
             config.getDatabase().getProducts().setValue(item.id, item);
+        });
+
+        // search
+        searchField.textProperty().addListener((observer, oldValue, newValue) -> {
+            System.out.println(newValue);
+            if (newValue.isEmpty()) {
+                tableView.setItems(items);
+            } else {
+                tableView.setItems(
+                        items.filtered((e) -> e.getName().toLowerCase().contains(newValue.toLowerCase()))
+                );
+            }
         });
     }
 
